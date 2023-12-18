@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 LABEL maintainer="djyoon0223@gmail.com"
 
 # ignore interaction

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
-LABEL maintainer="djyoon0223@gmail.com"
+LABEL maintainer="alchemine <djyoon0223@gmail.com>"
 
 # ignore interaction
 ARG DEBIAN_FRONTEND=noninteractive
@@ -9,6 +9,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY context/config     /opt/docker/context/config
 COPY context/entrypoint /opt/docker/context/entrypoint
 COPY context/utils      /opt/docker/context/utils
+
+# use proxy
+RUN sed -i 's#http://archive.ubuntu.com/ubuntu/#http://mirror.kakao.com/ubuntu/#g' /etc/apt/sources.list && \
+    sed -i 's#http://security.ubuntu.com/ubuntu/#http://mirror.kakao.com/ubuntu/#g' /etc/apt/sources.list
 
 # install fundamental packages
 RUN apt update && \
